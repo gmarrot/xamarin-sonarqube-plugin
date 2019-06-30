@@ -1,0 +1,12 @@
+# Gradle
+.gradle/
+
+# Build
+[Bb]in/
+[Oo]bj/
+packages/
+[Rr]esource.[Dd]esigner.cs
+
+# Visual Studio
+.vs/
+

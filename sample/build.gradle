@@ -1,0 +1,19 @@
+buildscript {
+    repositories {
+        jcenter()
+        mavenLocal()
+    }
+    dependencies {
+        classpath 'com.betomorrow.gradle:xamarin-sonarqube-plugin:1.0-SNAPSHOT'
+    }
+}
+
+apply plugin: 'xamarin-sonarqube-plugin'
+
+/**
+ * Gradle Wrapper
+ */
+
+wrapper {
+    gradleVersion = '4.9'
+}
