@@ -39,6 +39,7 @@ class SonarQubePlugin : Plugin<Project> {
                     t.group = SONARQUBE_GROUP
                     t.description = "Scans the current project and uploads the report to SonarQube server."
 
+                    t.serverUrl = sonarqubeExtension.url
                     t.serverLogin = sonarqubeExtension.login
                     t.serverPassword = sonarqubeExtension.password
                     t.serverAuthenticationToken = sonarqubeExtension.authenticationToken

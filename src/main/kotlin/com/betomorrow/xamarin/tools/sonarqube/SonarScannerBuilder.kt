@@ -66,7 +66,10 @@ class SonarScannerBuilder {
             ZippedFile(file).unzip(destination)
         }
 
-        return destination.absolutePath
+        return Paths.get(destination.absolutePath)
+            .resolve(SONAR_SCANNER_EXECUTABLE_NAME)
+            .toAbsolutePath()
+            .toString()
     }
 
     private fun buildDownloadUrl(version: String): URL {
@@ -75,6 +78,7 @@ class SonarScannerBuilder {
 
     companion object {
         const val DEFAULT_SONAR_SCANNER_VERSION = "4.6.2.2108"
+        const val SONAR_SCANNER_EXECUTABLE_NAME = "SonarScanner.MsBuild.exe"
     }
 
 }

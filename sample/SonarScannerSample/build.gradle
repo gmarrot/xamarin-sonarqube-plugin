@@ -10,6 +10,15 @@ buildscript {
 
 apply plugin: 'xamarin-sonarqube-plugin'
 
+project.ext {
+    nugetVersion = '4.8.2'
+}
+
+sonarqube {
+    login = 'admin'
+    password = 'admin'
+}
+
 /**
  * Gradle Wrapper
  */

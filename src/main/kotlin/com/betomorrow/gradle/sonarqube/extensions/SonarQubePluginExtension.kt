@@ -6,6 +6,7 @@ const val SONARQUBE_EXTENSION_NAME = "sonarqube"
 
 open class SonarQubePluginExtension(private val project: Project) {
 
+    var url: String? = null
     var login: String? = null
     var password: String? = null
     var authenticationToken: String? = null

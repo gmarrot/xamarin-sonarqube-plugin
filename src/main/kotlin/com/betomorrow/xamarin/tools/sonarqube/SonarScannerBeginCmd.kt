@@ -24,15 +24,15 @@ class SonarScannerBeginCmd(
         }
 
         if (!url.isNullOrBlank()) {
-            cmd.add("/d:\"sonar.host.url=$url\"")
+            cmd.add("/d:sonar.host.url=\"$url\"")
         }
 
         if (!login.isNullOrBlank()) {
-            cmd.add("/d:\"sonar.login=$login\"")
+            cmd.add("/d:sonar.login=\"$login\"")
         }
 
         if (!password.isNullOrBlank()) {
-            cmd.add("/d:\"sonar.password=$password\"")
+            cmd.add("/d:sonar.password=\"$password\"")
         }
 
         return cmd

@@ -32,7 +32,7 @@ class SonarScannerEndCmdTest {
             "mono",
             SONAR_SCANNER_PATH,
             "end",
-            "/d:\"sonar.login=sonarUser\""
+            "/d:sonar.login=\"sonarUser\""
         )
     }
 
@@ -49,7 +49,7 @@ class SonarScannerEndCmdTest {
             "mono",
             SONAR_SCANNER_PATH,
             "end",
-            "/d:\"sonar.password=sonarPassword\""
+            "/d:sonar.password=\"sonarPassword\""
         )
     }
 
@@ -70,8 +70,8 @@ class SonarScannerEndCmdTest {
             "mono",
             SONAR_SCANNER_PATH,
             "end",
-            "/d:\"sonar.login=sonarUser\"",
-            "/d:\"sonar.password=sonarPassword\""
+            "/d:sonar.login=\"sonarUser\"",
+            "/d:sonar.password=\"sonarPassword\""
         )
     }
 

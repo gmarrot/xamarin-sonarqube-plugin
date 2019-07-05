@@ -23,6 +23,9 @@ open class SonarScanTask : DefaultTask() {
     var sonarScannerPath: String? = null
 
     @Optional
+    var serverUrl: String? = null
+
+    @Optional
     var serverLogin: String? = null
 
     @Optional

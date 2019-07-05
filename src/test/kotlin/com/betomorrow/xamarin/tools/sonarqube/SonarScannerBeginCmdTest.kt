@@ -69,7 +69,7 @@ class SonarScannerBeginCmdTest {
             SONAR_SCANNER_PATH,
             "begin",
             "/k:\"$PROJECT_KEY\"",
-            "/d:\"sonar.host.url=https://sonarqube.example.com\""
+            "/d:sonar.host.url=\"https://sonarqube.example.com\""
         )
     }
 
@@ -87,7 +87,7 @@ class SonarScannerBeginCmdTest {
             SONAR_SCANNER_PATH,
             "begin",
             "/k:\"$PROJECT_KEY\"",
-            "/d:\"sonar.login=sonarUser\""
+            "/d:sonar.login=\"sonarUser\""
         )
     }
 
@@ -105,7 +105,7 @@ class SonarScannerBeginCmdTest {
             SONAR_SCANNER_PATH,
             "begin",
             "/k:\"$PROJECT_KEY\"",
-            "/d:\"sonar.password=sonarPassword\""
+            "/d:sonar.password=\"sonarPassword\""
         )
     }
 
@@ -133,9 +133,9 @@ class SonarScannerBeginCmdTest {
             "/k:\"$PROJECT_KEY\"",
             "/n:\"Project Name\"",
             "/v:\"1.0\"",
-            "/d:\"sonar.host.url=https://sonarqube.example.com\"",
-            "/d:\"sonar.login=sonarUser\"",
-            "/d:\"sonar.password=sonarPassword\""
+            "/d:sonar.host.url=\"https://sonarqube.example.com\"",
+            "/d:sonar.login=\"sonarUser\"",
+            "/d:sonar.password=\"sonarPassword\""
         )
     }
 
