@@ -1,5 +1,6 @@
-package com.betomorrow.xamarin.tools.sonarqube
+package com.betomorrow.sonarqube.tools.sonarscanner
 
+import com.betomorrow.gradle.sonarqube.tools.sonarscanner.SonarScannerEndCmd
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 
@@ -39,7 +40,10 @@ class SonarScannerEndCmdTest {
     @Test
     fun `test build should return correct command arguments when server password has been specified`() {
         // Given
-        cmd = SonarScannerEndCmd(SONAR_SCANNER_PATH, password = "sonarPassword")
+        cmd = SonarScannerEndCmd(
+            SONAR_SCANNER_PATH,
+            password = "sonarPassword"
+        )
 
         // When
         val cmdArguments = cmd.build()

@@ -1,4 +1,4 @@
-package com.betomorrow.xamarin.tools.sonarqube
+package com.betomorrow.gradle.sonarqube.tools.sonarscanner
 
 import com.betomorrow.xamarin.commands.CommandRunner
 

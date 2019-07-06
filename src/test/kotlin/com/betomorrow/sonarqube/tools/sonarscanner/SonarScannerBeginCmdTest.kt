@@ -1,5 +1,6 @@
-package com.betomorrow.xamarin.tools.sonarqube
+package com.betomorrow.sonarqube.tools.sonarscanner
 
+import com.betomorrow.gradle.sonarqube.tools.sonarscanner.SonarScannerBeginCmd
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 
@@ -22,7 +23,11 @@ class SonarScannerBeginCmdTest {
     @Test
     fun `test build should return correct command arguments when project name has been specified`() {
         // Given
-        cmd = SonarScannerBeginCmd(SONAR_SCANNER_PATH, PROJECT_KEY, "Project Name")
+        cmd = SonarScannerBeginCmd(
+            SONAR_SCANNER_PATH,
+            PROJECT_KEY,
+            "Project Name"
+        )
 
         // When
         val cmdArguments = cmd.build()
@@ -40,7 +45,11 @@ class SonarScannerBeginCmdTest {
     @Test
     fun `test build should return correct command arguments when project version has been specified`() {
         // Given
-        cmd = SonarScannerBeginCmd(SONAR_SCANNER_PATH, PROJECT_KEY, version = "1.0")
+        cmd = SonarScannerBeginCmd(
+            SONAR_SCANNER_PATH,
+            PROJECT_KEY,
+            version = "1.0"
+        )
 
         // When
         val cmdArguments = cmd.build()
@@ -58,7 +67,11 @@ class SonarScannerBeginCmdTest {
     @Test
     fun `test build should return correct command arguments when server url has been specified`() {
         // Given
-        cmd = SonarScannerBeginCmd(SONAR_SCANNER_PATH, PROJECT_KEY, url = "https://sonarqube.example.com")
+        cmd = SonarScannerBeginCmd(
+            SONAR_SCANNER_PATH,
+            PROJECT_KEY,
+            url = "https://sonarqube.example.com"
+        )
 
         // When
         val cmdArguments = cmd.build()
@@ -76,7 +89,11 @@ class SonarScannerBeginCmdTest {
     @Test
     fun `test build should return correct command arguments when server login has been specified`() {
         // Given
-        cmd = SonarScannerBeginCmd(SONAR_SCANNER_PATH, PROJECT_KEY, login = "sonarUser")
+        cmd = SonarScannerBeginCmd(
+            SONAR_SCANNER_PATH,
+            PROJECT_KEY,
+            login = "sonarUser"
+        )
 
         // When
         val cmdArguments = cmd.build()
@@ -94,7 +111,11 @@ class SonarScannerBeginCmdTest {
     @Test
     fun `test build should return correct command arguments when server password has been specified`() {
         // Given
-        cmd = SonarScannerBeginCmd(SONAR_SCANNER_PATH, PROJECT_KEY, password = "sonarPassword")
+        cmd = SonarScannerBeginCmd(
+            SONAR_SCANNER_PATH,
+            PROJECT_KEY,
+            password = "sonarPassword"
+        )
 
         // When
         val cmdArguments = cmd.build()

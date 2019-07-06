@@ -1,9 +1,10 @@
 package com.betomorrow.gradle.sonarqube.tasks
 
 import com.betomorrow.gradle.sonarqube.context.PluginContext
-import com.betomorrow.xamarin.tools.sonarqube.SonarScanner
-import com.betomorrow.xamarin.tools.sonarqube.SonarScannerBuilder
+import com.betomorrow.gradle.sonarqube.tools.sonarscanner.SonarScanner
+import com.betomorrow.gradle.sonarqube.tools.sonarscanner.SonarScannerBuilder
 import org.gradle.api.DefaultTask
+import org.gradle.api.GradleException
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.Optional
 import org.gradle.api.tasks.TaskAction
@@ -61,8 +62,18 @@ open class SonarScanTask : DefaultTask() {
             sonarScanner.setCredentials(token)
         }
 
-        println("Solution: $solutionFile")
-        println("Sonar scan!")
+        // TODO Manage Project key, name and version
+        if (sonarScanner.begin("SonarScannerSample-master", null, null, serverUrl) > 0) {
+            throw GradleException("Failed to initialize the scan")
+        }
+
+        if (msbuild.rebuildSolution(solutionFile.absolutePath, configuration, platform) > 0) {
+            throw GradleException("Failed to build solution")
+        }
+
+        if (sonarScanner.end() > 0) {
+            throw GradleException("Failed to send scan report to server")
+        }
     }
 
     private fun buildSonarScanner(): SonarScanner {

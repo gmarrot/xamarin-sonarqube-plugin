@@ -1,4 +1,4 @@
-package com.betomorrow.xamarin.tools.msbuild
+package com.betomorrow.gradle.sonarqube.tools.msbuild
 
 import com.betomorrow.xamarin.commands.CommandRunner
 import com.betomorrow.xamarin.commands.SystemCommandRunner

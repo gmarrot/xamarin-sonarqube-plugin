@@ -1,9 +1,9 @@
 package com.betomorrow.gradle.sonarqube.context
 
+import com.betomorrow.gradle.sonarqube.tools.msbuild.MsBuild
 import com.betomorrow.xamarin.commands.CommandRunner
-import com.betomorrow.xamarin.commands.FakeCommandRunner
+import com.betomorrow.xamarin.commands.DryRunCommandRunner
 import com.betomorrow.xamarin.commands.SystemCommandRunner
-import com.betomorrow.xamarin.tools.msbuild.MsBuild
 import com.betomorrow.xamarin.tools.nuget.Nuget
 import com.betomorrow.xamarin.tools.nuget.NugetBuilder
 import org.gradle.api.Project
@@ -24,7 +24,7 @@ class PluginContext {
         }
 
         private fun fakeApplicationContext(project: Project, verbose: Boolean): ApplicationContext {
-            val commandRunnerInstance = FakeCommandRunner()
+            val commandRunnerInstance = DryRunCommandRunner()
             commandRunnerInstance.setVerbose(verbose)
 
             return createApplicationContext(project, commandRunnerInstance)

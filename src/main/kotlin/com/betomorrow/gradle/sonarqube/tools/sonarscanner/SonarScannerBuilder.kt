@@ -1,4 +1,4 @@
-package com.betomorrow.xamarin.tools.sonarqube
+package com.betomorrow.gradle.sonarqube.tools.sonarscanner
 
 import com.betomorrow.groovy.extensions.UrlExtension
 import com.betomorrow.xamarin.commands.CommandRunner
@@ -50,7 +50,8 @@ class SonarScannerBuilder {
         }
 
         if (!this::sonarScannerVersion.isInitialized || sonarScannerVersion.isEmpty()) {
-            sonarScannerVersion = DEFAULT_SONAR_SCANNER_VERSION
+            sonarScannerVersion =
+                DEFAULT_SONAR_SCANNER_VERSION
         }
 
         sonarScannerPath = getOrDownloadSonarScanner(sonarScannerVersion)

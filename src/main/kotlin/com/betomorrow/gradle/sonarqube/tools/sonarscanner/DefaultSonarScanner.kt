@@ -1,9 +1,10 @@
-package com.betomorrow.xamarin.tools.sonarqube
+package com.betomorrow.gradle.sonarqube.tools.sonarscanner
 
 import com.betomorrow.xamarin.commands.CommandRunner
 import java.io.File
 
-class DefaultSonarScanner(private val runner: CommandRunner, private val sonarScannerPath: String) : SonarScanner {
+class DefaultSonarScanner(private val runner: CommandRunner, private val sonarScannerPath: String) :
+    SonarScanner {
 
     private var login: String? = null
     private var password: String? = null
@@ -24,11 +25,27 @@ class DefaultSonarScanner(private val runner: CommandRunner, private val sonarSc
     }
 
     override fun begin(projectKey: String, projectName: String?, version: String?, url: String?): Int {
-        return execute(SonarScannerBeginCmd(sonarScannerPath, projectKey, projectName, version, url, login, password))
+        return execute(
+            SonarScannerBeginCmd(
+                sonarScannerPath,
+                projectKey,
+                projectName,
+                version,
+                url,
+                login,
+                password
+            )
+        )
     }
 
     override fun end(): Int {
-        return execute(SonarScannerEndCmd(sonarScannerPath, login, password))
+        return execute(
+            SonarScannerEndCmd(
+                sonarScannerPath,
+                login,
+                password
+            )
+        )
     }
 
     private fun execute(cmd: CommandRunner.Cmd): Int {

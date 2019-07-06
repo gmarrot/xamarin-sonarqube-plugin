@@ -1,5 +1,6 @@
-package com.betomorrow.xamarin.tools.msbuild
+package com.betomorrow.sonarqube.tools.msbuild
 
+import com.betomorrow.gradle.sonarqube.tools.msbuild.MsBuild
 import com.betomorrow.xamarin.commands.CommandRunner
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.BeforeEach
