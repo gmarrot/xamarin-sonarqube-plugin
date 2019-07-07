@@ -89,8 +89,4 @@ open class SonarScanTask : DefaultTask() {
         return sonarScannerBuilder.build()
     }
 
-    private fun buildSolution() {
-        msbuild.rebuildSolution(solutionFile.absolutePath, configuration, platform)
-    }
-
 }

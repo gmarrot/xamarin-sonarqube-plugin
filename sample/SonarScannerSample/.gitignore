@@ -10,3 +10,5 @@ packages/
 # Visual Studio
 .vs/
 
+# SonarQube
+.sonarqube/

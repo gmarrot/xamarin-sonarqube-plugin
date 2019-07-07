@@ -17,7 +17,7 @@ class SonarScannerBeginCmdTest {
         val cmdArguments = cmd.build()
 
         // Then
-        Assertions.assertThat(cmdArguments).containsExactly("mono", SONAR_SCANNER_PATH, "begin", "/k:\"$PROJECT_KEY\"")
+        Assertions.assertThat(cmdArguments).containsExactly("mono", SONAR_SCANNER_PATH, "begin", "/k:$PROJECT_KEY")
     }
 
     @Test
@@ -37,8 +37,8 @@ class SonarScannerBeginCmdTest {
             "mono",
             SONAR_SCANNER_PATH,
             "begin",
-            "/k:\"$PROJECT_KEY\"",
-            "/n:\"Project Name\""
+            "/k:$PROJECT_KEY",
+            "/n:Project Name"
         )
     }
 
@@ -59,8 +59,8 @@ class SonarScannerBeginCmdTest {
             "mono",
             SONAR_SCANNER_PATH,
             "begin",
-            "/k:\"$PROJECT_KEY\"",
-            "/v:\"1.0\""
+            "/k:$PROJECT_KEY",
+            "/v:1.0"
         )
     }
 
@@ -81,8 +81,8 @@ class SonarScannerBeginCmdTest {
             "mono",
             SONAR_SCANNER_PATH,
             "begin",
-            "/k:\"$PROJECT_KEY\"",
-            "/d:sonar.host.url=\"https://sonarqube.example.com\""
+            "/k:$PROJECT_KEY",
+            "/d:sonar.host.url=https://sonarqube.example.com"
         )
     }
 
@@ -103,8 +103,8 @@ class SonarScannerBeginCmdTest {
             "mono",
             SONAR_SCANNER_PATH,
             "begin",
-            "/k:\"$PROJECT_KEY\"",
-            "/d:sonar.login=\"sonarUser\""
+            "/k:$PROJECT_KEY",
+            "/d:sonar.login=sonarUser"
         )
     }
 
@@ -125,8 +125,8 @@ class SonarScannerBeginCmdTest {
             "mono",
             SONAR_SCANNER_PATH,
             "begin",
-            "/k:\"$PROJECT_KEY\"",
-            "/d:sonar.password=\"sonarPassword\""
+            "/k:$PROJECT_KEY",
+            "/d:sonar.password=sonarPassword"
         )
     }
 
@@ -151,12 +151,12 @@ class SonarScannerBeginCmdTest {
             "mono",
             SONAR_SCANNER_PATH,
             "begin",
-            "/k:\"$PROJECT_KEY\"",
-            "/n:\"Project Name\"",
-            "/v:\"1.0\"",
-            "/d:sonar.host.url=\"https://sonarqube.example.com\"",
-            "/d:sonar.login=\"sonarUser\"",
-            "/d:sonar.password=\"sonarPassword\""
+            "/k:$PROJECT_KEY",
+            "/n:Project Name",
+            "/v:1.0",
+            "/d:sonar.host.url=https://sonarqube.example.com",
+            "/d:sonar.login=sonarUser",
+            "/d:sonar.password=sonarPassword"
         )
     }
 

@@ -13,13 +13,13 @@ class SonarScannerBuilder {
 
     private lateinit var runner: CommandRunner
 
-    private lateinit var sonarScannerVersion: String
-    private lateinit var sonarScannerPath: String
+    private var scannerVersion: String? = null
+    private var scannerPath: String? = null
 
-    private val nugetCacheDir: String
+    private val sonarqubeCacheDir: String
         get() {
             return Paths.get(System.getProperty("user.home"))
-                .resolve(".nuget")
+                .resolve(".sonarqube")
                 .resolve("caches")
                 .toAbsolutePath()
                 .toString()
@@ -30,13 +30,13 @@ class SonarScannerBuilder {
         return this
     }
 
-    fun withVersion(sonarScannerVersion: String): SonarScannerBuilder {
-        this.sonarScannerVersion = sonarScannerVersion
+    fun withVersion(version: String): SonarScannerBuilder {
+        scannerVersion = version
         return this
     }
 
-    fun withSonarScannerPath(sonarScannerPath: String): SonarScannerBuilder {
-        this.sonarScannerPath = sonarScannerPath
+    fun withSonarScannerPath(path: String): SonarScannerBuilder {
+        scannerPath = path
         return this
     }
 
@@ -45,23 +45,21 @@ class SonarScannerBuilder {
             runner = DefaultCommandRunner.getINSTANCE()
         }
 
-        if (this::sonarScannerPath.isInitialized && sonarScannerPath.isNotEmpty()) {
-            return DefaultSonarScanner(runner, sonarScannerPath)
+        scannerPath?.let { path ->
+            if (path.isNotEmpty()) {
+                return DefaultSonarScanner(runner, path)
+            }
         }
 
-        if (!this::sonarScannerVersion.isInitialized || sonarScannerVersion.isEmpty()) {
-            sonarScannerVersion =
-                DEFAULT_SONAR_SCANNER_VERSION
-        }
+        val version = scannerVersion ?: DEFAULT_SONAR_SCANNER_VERSION
+        val path = getOrDownloadSonarScanner(version)
 
-        sonarScannerPath = getOrDownloadSonarScanner(sonarScannerVersion)
-
-        return DefaultSonarScanner(runner, sonarScannerPath)
+        return DefaultSonarScanner(runner, path)
     }
 
     private fun getOrDownloadSonarScanner(version: String): String {
         val url = buildDownloadUrl(version)
-        val destination = File(nugetCacheDir, UrlExtension.getFileNameWithoutExtension(url))
+        val destination = File(sonarqubeCacheDir, UrlExtension.getFileNameWithoutExtension(url))
         if (!destination.exists()) {
             val file = FileDownloader().download(url)
             ZippedFile(file).unzip(destination)

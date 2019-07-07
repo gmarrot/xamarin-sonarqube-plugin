@@ -1,8 +1,8 @@
 package com.betomorrow.gradle.sonarqube.context
 
+import com.betomorrow.gradle.sonarqube.commands.DryRunCommandRunner
 import com.betomorrow.gradle.sonarqube.tools.msbuild.MsBuild
 import com.betomorrow.xamarin.commands.CommandRunner
-import com.betomorrow.xamarin.commands.DryRunCommandRunner
 import com.betomorrow.xamarin.commands.SystemCommandRunner
 import com.betomorrow.xamarin.tools.nuget.Nuget
 import com.betomorrow.xamarin.tools.nuget.NugetBuilder

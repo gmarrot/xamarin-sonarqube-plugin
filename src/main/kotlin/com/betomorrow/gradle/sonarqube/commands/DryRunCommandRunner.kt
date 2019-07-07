@@ -1,4 +1,6 @@
-package com.betomorrow.xamarin.commands
+package com.betomorrow.gradle.sonarqube.commands
+
+import com.betomorrow.xamarin.commands.CommandRunner
 
 class DryRunCommandRunner : CommandRunner {
 

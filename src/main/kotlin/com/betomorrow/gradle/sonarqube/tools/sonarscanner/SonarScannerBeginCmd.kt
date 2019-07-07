@@ -13,26 +13,26 @@ class SonarScannerBeginCmd(
 ) : CommandRunner.Cmd {
 
     override fun build(): MutableList<String> {
-        val cmd = mutableListOf("mono", sonarScannerPath, "begin", "/k:\"$projectKey\"")
+        val cmd = mutableListOf("mono", sonarScannerPath, "begin", "/k:$projectKey")
 
         if (!projectName.isNullOrBlank()) {
-            cmd.add("/n:\"$projectName\"")
+            cmd.add("/n:$projectName")
         }
 
         if (!version.isNullOrBlank()) {
-            cmd.add("/v:\"$version\"")
+            cmd.add("/v:$version")
         }
 
         if (!url.isNullOrBlank()) {
-            cmd.add("/d:sonar.host.url=\"$url\"")
+            cmd.add("/d:sonar.host.url=$url")
         }
 
         if (!login.isNullOrBlank()) {
-            cmd.add("/d:sonar.login=\"$login\"")
+            cmd.add("/d:sonar.login=$login")
         }
 
         if (!password.isNullOrBlank()) {
-            cmd.add("/d:sonar.password=\"$password\"")
+            cmd.add("/d:sonar.password=$password")
         }
 
         return cmd

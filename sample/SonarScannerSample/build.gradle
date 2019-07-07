@@ -4,17 +4,20 @@ buildscript {
         mavenLocal()
     }
     dependencies {
-        classpath 'com.betomorrow.gradle:xamarin-sonarqube-plugin:1.0-SNAPSHOT'
+        classpath 'com.betomorrow.gradle:xamarin-sonarqube-plugin:1.0.0-SNAPSHOT'
     }
 }
 
-apply plugin: 'xamarin-sonarqube-plugin'
+apply plugin: 'com.betomorrow.dotnet.sonarqube'
+
+version=1.0
 
 project.ext {
     nugetVersion = '4.8.2'
 }
 
 sonarqube {
+    url = "http://localhost:9000"
     login = 'admin'
     password = 'admin'
 }

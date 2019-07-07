@@ -12,11 +12,11 @@ class SonarScannerEndCmd(
         val cmd = mutableListOf("mono", sonarScannerPath, "end")
 
         if (!login.isNullOrBlank()) {
-            cmd.add("/d:sonar.login=\"$login\"")
+            cmd.add("/d:sonar.login=$login")
         }
 
         if (!password.isNullOrBlank()) {
-            cmd.add("/d:sonar.password=\"$password\"")
+            cmd.add("/d:sonar.password=$password")
         }
 
         return cmd
