@@ -63,12 +63,26 @@ class SonarScannerBuilder {
         if (!destination.exists()) {
             val file = FileDownloader().download(url)
             ZippedFile(file).unzip(destination)
+            // Sonar Scanner for MSBuild releases has the sonar-scanner binary not executable on Unix file system
+            fixSonarScannerBinaryRights(destination)
         }
 
         return Paths.get(destination.absolutePath)
             .resolve(SONAR_SCANNER_EXECUTABLE_NAME)
             .toAbsolutePath()
             .toString()
+    }
+
+    private fun fixSonarScannerBinaryRights(scannerDirectory: File) {
+        val sonarScannerBinary = scannerDirectory
+            .walkTopDown()
+            .find { file -> file.isFile && file.name == "sonar-scanner" }
+
+        sonarScannerBinary?.let { binary ->
+            if (!binary.canExecute()) {
+                binary.setExecutable(true, true)
+            }
+        }
     }
 
     private fun buildDownloadUrl(version: String): URL {
