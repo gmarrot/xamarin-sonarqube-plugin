@@ -34,6 +34,7 @@ class SonarQubePlugin : Plugin<Project> {
                 }
 
                 val solutionFile = findSolutionFile(project)
+                val projectVersion = getProjectVersion(project)
 
                 tasks.register("sonarScan", SonarScanTask::class.java) { t ->
                     t.group = SONARQUBE_GROUP
@@ -45,6 +46,9 @@ class SonarQubePlugin : Plugin<Project> {
                     t.serverAuthenticationToken = sonarqubeExtension.authenticationToken
 
                     t.solutionFile = solutionFile
+                    t.projectKey = sonarqubeExtension.projectKey
+                    t.projectName = sonarqubeExtension.projectName
+                    t.projectVersion = projectVersion
 
                     t.dependsOn(nugetRestoreTask)
                 }
@@ -56,6 +60,15 @@ class SonarQubePlugin : Plugin<Project> {
         return File(project.projectDir.absolutePath)
             .walkTopDown()
             .first { file -> file.isFile && file.extension == "sln" }
+    }
+
+    private fun getProjectVersion(project: Project): String? {
+        val version = project.version.toString()
+        if (version == "unspecified") {
+            return null
+        }
+
+        return version
     }
 
     companion object {

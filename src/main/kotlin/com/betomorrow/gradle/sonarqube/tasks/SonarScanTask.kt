@@ -23,19 +23,35 @@ open class SonarScanTask : DefaultTask() {
     @Optional
     var sonarScannerPath: String? = null
 
+    @Input
     @Optional
     var serverUrl: String? = null
 
+    @Input
     @Optional
     var serverLogin: String? = null
 
+    @Input
     @Optional
     var serverPassword: String? = null
 
+    @Input
     @Optional
     var serverAuthenticationToken: String? = null
 
+    @Input
     lateinit var solutionFile: File
+
+    @Input
+    lateinit var projectKey: String
+
+    @Input
+    @Optional
+    var projectName: String? = null
+
+    @Input
+    @Optional
+    var projectVersion: String? = null
 
     @Input
     var configuration: String = "Release"
@@ -62,8 +78,7 @@ open class SonarScanTask : DefaultTask() {
             sonarScanner.setCredentials(token)
         }
 
-        // TODO Manage Project key, name and version
-        if (sonarScanner.begin("SonarScannerSample-master", null, null, serverUrl) > 0) {
+        if (sonarScanner.begin(projectKey, projectName, projectVersion, serverUrl) > 0) {
             throw GradleException("Failed to initialize the scan")
         }
 

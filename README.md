@@ -14,8 +14,8 @@ To execute the scan, you will also need to install msbuild on your computer.
 
 This plugins creates several tasks to execute his scan :
 
- * __nugetRestore__ : Restore NuGet packages for the solution. If a task with the same name already exists, it will use it instead of register its own one.
- * __sonarScan__ : Execute the SonarQube scan building the solution with the defined configuration and platform.
+* __nugetRestore__ : Restore NuGet packages for the solution. If a task with the same name already exists, it will use it instead of register its own one.
+* __sonarScan__ : Execute the SonarQube scan building the solution with the defined configuration and platform.
 
 ## Quick Start
 
@@ -25,8 +25,11 @@ TODO
 
 ```groovy
 sonarqube {
-    // Server configuration
+    // Project configuration
+    projectKey = ""                 // Required, key for project on SonarQube
+    projectName = ""                // Optional, default : null
 
+    // Server configuration
     url = "http://localhost:9000"   // Optional, default : use SonarScanner default server URL
     login = ""                      // Optional, default : null
     password = ""                   // Optional, default : null
@@ -38,7 +41,7 @@ sonarqube {
 
 If the SonarQube server you use needs authentication, the plugin provides you the two methods defined in the scanner :
 
- * `login` / `password`
- * `authenticationToken`
+* `login` / `password`
+* `authenticationToken`
 
 If the three properties are defined in your `build.gradle`, the authentication token will be used instead of the login and password.

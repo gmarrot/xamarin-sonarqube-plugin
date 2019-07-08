@@ -17,6 +17,8 @@ project.ext {
 }
 
 sonarqube {
+    projectKey = "SonarScannerSample-master"
+
     url = "http://localhost:9000"
     login = 'admin'
     password = 'admin'
