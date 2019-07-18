@@ -19,7 +19,46 @@ This plugins creates several tasks to execute his scan :
 
 ## Quick Start
 
-TODO
+First, you need to apply the plugin in your `build.gradle`.
+As it uses a jcenter library, you will also need to update your buildscript.
+
+```groovy
+buildscript {
+    repositories {
+        jcenter()
+    }
+}
+
+plugins {
+    id "com.betomorrow.xamarin.sonarqube" version "1.0.0"
+}
+```
+
+Or with legacy plugin declaration :
+
+```groovy
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "com.betomorrow.gradle:xamarin-sonarqube-plugin:1.0.0"
+    }
+}
+
+apply plugin: "com.betomorrow.xamarin.sonarqube"
+```
+
+We will also have to declare your SonarQube project key :
+
+```groovy
+sonarqube {
+    projectKey = "my-project-jey"
+}
+```
 
 ## Complete DSL
 
