@@ -5,7 +5,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.betomorrow.gradle:xamarin-sonarqube-plugin:1.0.0-SNAPSHOT'
+        classpath 'com.betomorrow.gradle:xamarin-sonarqube-plugin:1.0.0'
     }
 }
 
@@ -13,7 +13,7 @@ plugins {
     id 'com.betomorrow.xamarin.nunit' version '1.9.0'
 }
 
-apply plugin: 'com.betomorrow.dotnet.sonarqube'
+apply plugin: 'com.betomorrow.xamarin.sonarqube'
 
 version=1.0
 

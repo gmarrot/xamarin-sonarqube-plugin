@@ -24,7 +24,7 @@ class SonarQubePluginIntTest {
         buildFile.appendText(
             """
             plugins {
-                id 'com.betomorrow.dotnet.sonarqube'
+                id 'com.betomorrow.xamarin.sonarqube'
             }
 
             sonarqube {

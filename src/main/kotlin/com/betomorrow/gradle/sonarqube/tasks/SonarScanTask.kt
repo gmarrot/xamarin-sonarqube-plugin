@@ -40,7 +40,7 @@ open class SonarScanTask : DefaultTask() {
     @Optional
     var serverAuthenticationToken: String? = null
 
-    @Input
+    @InputFile
     lateinit var solutionFile: File
 
     @Input
