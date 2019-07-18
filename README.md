@@ -27,13 +27,15 @@ TODO
 sonarqube {
     // Project configuration
     projectKey = ""                 // Required, key for project on SonarQube
-    projectName = ""                // Optional, default : null
+    projectName = ""                // Optional, default: null
 
     // Server configuration
-    url = "http://localhost:9000"   // Optional, default : use SonarScanner default server URL
-    login = ""                      // Optional, default : null
-    password = ""                   // Optional, default : null
-    authentificationToken = ""      // Optional, default : null
+    url = "http://localhost:9000"   // Optional, default: use SonarScanner default server URL
+    login = ""                      // Optional, default: null
+    password = ""                   // Optional, default: null
+    authentificationToken = ""      // Optional, default: null
+
+    nunitReport = ""                // Optional, default: null
 }
 ```
 

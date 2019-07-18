@@ -24,7 +24,7 @@ class DefaultSonarScanner(private val runner: CommandRunner, private val sonarSc
         password = null
     }
 
-    override fun begin(projectKey: String, projectName: String?, version: String?, url: String?): Int {
+    override fun begin(projectKey: String, projectName: String?, version: String?, url: String?, nunitReport: File?): Int {
         return execute(
             SonarScannerBeginCmd(
                 sonarScannerPath,
@@ -33,7 +33,8 @@ class DefaultSonarScanner(private val runner: CommandRunner, private val sonarSc
                 version,
                 url,
                 login,
-                password
+                password,
+                nunitReport
             )
         )
     }

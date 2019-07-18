@@ -1,23 +1,31 @@
-package com.betomorrow.sonarqube.tools.sonarscanner
+package com.betomorrow.gradle.sonarqube.tools.sonarscanner
 
-import com.betomorrow.gradle.sonarqube.tools.sonarscanner.SonarScannerBeginCmd
 import org.assertj.core.api.Assertions
+import org.gradle.internal.impldep.org.junit.Rule
+import org.gradle.internal.impldep.org.junit.rules.TemporaryFolder
 import org.junit.jupiter.api.Test
 
 class SonarScannerBeginCmdTest {
 
     private lateinit var cmd: SonarScannerBeginCmd
 
+    @Rule
+    val testProjectDir = TemporaryFolder()
+
     @Test
     fun `test build should return correct command arguments for given scanner path and project key`() {
         // Given
-        cmd = SonarScannerBeginCmd(SONAR_SCANNER_PATH, PROJECT_KEY)
+        cmd = SonarScannerBeginCmd(
+            SONAR_SCANNER_PATH,
+            PROJECT_KEY
+        )
 
         // When
         val cmdArguments = cmd.build()
 
         // Then
-        Assertions.assertThat(cmdArguments).containsExactly("mono", SONAR_SCANNER_PATH, "begin", "/k:$PROJECT_KEY")
+        Assertions.assertThat(cmdArguments).containsExactly("mono",
+            SONAR_SCANNER_PATH, "begin", "/k:$PROJECT_KEY")
     }
 
     @Test
@@ -131,8 +139,36 @@ class SonarScannerBeginCmdTest {
     }
 
     @Test
+    fun `test build should return correct command arguments when NUnit report has been specified`() {
+        // Given
+        testProjectDir.create()
+        val nunitReport = testProjectDir.newFile("nunit-report.xml")
+
+        cmd = SonarScannerBeginCmd(
+            SONAR_SCANNER_PATH,
+            PROJECT_KEY,
+            nunitReport = nunitReport
+        )
+
+        // When
+        val cmdArguments = cmd.build()
+
+        // Then
+        Assertions.assertThat(cmdArguments).containsExactly(
+            "mono",
+            SONAR_SCANNER_PATH,
+            "begin",
+            "/k:$PROJECT_KEY",
+            "/d:sonar.cs.nunit.reportsPaths=${nunitReport.absolutePath}"
+        )
+    }
+
+    @Test
     fun `test build should return correct command arguments when all parameters have been specified`() {
         // Given
+        testProjectDir.create()
+        val nunitReport = testProjectDir.newFile("nunit-report.xml")
+
         cmd = SonarScannerBeginCmd(
             SONAR_SCANNER_PATH,
             PROJECT_KEY,
@@ -140,7 +176,8 @@ class SonarScannerBeginCmdTest {
             "1.0",
             "https://sonarqube.example.com",
             "sonarUser",
-            "sonarPassword"
+            "sonarPassword",
+            nunitReport
         )
 
         // When
@@ -156,7 +193,8 @@ class SonarScannerBeginCmdTest {
             "/v:1.0",
             "/d:sonar.host.url=https://sonarqube.example.com",
             "/d:sonar.login=sonarUser",
-            "/d:sonar.password=sonarPassword"
+            "/d:sonar.password=sonarPassword",
+            "/d:sonar.cs.nunit.reportsPaths=${nunitReport.absolutePath}"
         )
     }
 

@@ -1,6 +1,7 @@
 package com.betomorrow.gradle.sonarqube
 
 import org.assertj.core.api.Assertions.assertThat
+import org.gradle.internal.impldep.org.junit.Rule
 import org.gradle.internal.impldep.org.junit.rules.TemporaryFolder
 import org.gradle.testkit.runner.GradleRunner
 import org.gradle.testkit.runner.TaskOutcome
@@ -10,6 +11,7 @@ import java.io.File
 
 class SonarQubePluginIntTest {
 
+    @Rule
     val testProjectDir = TemporaryFolder()
 
     lateinit var buildFile: File
@@ -25,6 +27,10 @@ class SonarQubePluginIntTest {
                 id 'com.betomorrow.dotnet.sonarqube'
             }
 
+            sonarqube {
+                projectKey = 'SampleProject-Key'
+            }
+            
             """.trimIndent()
         )
     }

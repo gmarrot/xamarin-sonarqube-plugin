@@ -1,0 +1,44 @@
+buildscript {
+    repositories {
+        jcenter()
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.betomorrow.gradle:xamarin-sonarqube-plugin:1.0.0-SNAPSHOT'
+    }
+}
+
+plugins {
+    id 'com.betomorrow.xamarin.nunit' version '1.9.0'
+}
+
+apply plugin: 'com.betomorrow.dotnet.sonarqube'
+
+version=1.0
+
+project.ext {
+    nugetVersion = '4.8.2'
+}
+
+nunit {
+    format = "nunit2"
+}
+
+sonarqube {
+    projectKey = "SonarScannerSampleWithTestReport-master"
+
+    url = "http://localhost:9000"
+    login = 'admin'
+    password = 'admin'
+
+    nunitReport = "TestResult.xml"
+}
+
+/**
+ * Gradle Wrapper
+ */
+
+wrapper {
+    gradleVersion = '4.9'
+}

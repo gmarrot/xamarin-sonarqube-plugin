@@ -6,13 +6,14 @@ import com.betomorrow.gradle.sonarqube.tools.sonarscanner.SonarScannerBuilder
 import org.gradle.api.DefaultTask
 import org.gradle.api.GradleException
 import org.gradle.api.tasks.Input
+import org.gradle.api.tasks.InputFile
 import org.gradle.api.tasks.Optional
 import org.gradle.api.tasks.TaskAction
 import java.io.File
 
 open class SonarScanTask : DefaultTask() {
 
-    private val commandRunner = PluginContext.current.commandRunner
+    private val sonarScannerBuilder = PluginContext.current.sonarScannerBuilder
     private val msbuild = PluginContext.current.msBuild
 
     @Input
@@ -60,6 +61,10 @@ open class SonarScanTask : DefaultTask() {
     @Optional
     var platform: String? = null
 
+    @InputFile
+    @Optional
+    var nunitReport: File? = null
+
     @TaskAction
     fun scan() {
         val sonarScanner = buildSonarScanner()
@@ -73,12 +78,8 @@ open class SonarScanTask : DefaultTask() {
                 sonarScanner.setCredentials(serverLogin!!, serverPassword!!)
             }
         }
-        serverAuthenticationToken?.let { token ->
-            logger.debug("Set authentication token to sonar scanner")
-            sonarScanner.setCredentials(token)
-        }
 
-        if (sonarScanner.begin(projectKey, projectName, projectVersion, serverUrl) > 0) {
+        if (sonarScanner.begin(projectKey, projectName, projectVersion, serverUrl, nunitReport) > 0) {
             throw GradleException("Failed to initialize the scan")
         }
 
@@ -92,8 +93,6 @@ open class SonarScanTask : DefaultTask() {
     }
 
     private fun buildSonarScanner(): SonarScanner {
-        val sonarScannerBuilder = SonarScannerBuilder()
-            .withCommandBuilder(commandRunner)
         sonarScannerVersion?.let {
             sonarScannerBuilder.withVersion(it)
         }

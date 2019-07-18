@@ -1,6 +1,5 @@
-package com.betomorrow.sonarqube.tools.sonarscanner
+package com.betomorrow.gradle.sonarqube.tools.sonarscanner
 
-import com.betomorrow.gradle.sonarqube.tools.sonarscanner.SonarScannerEndCmd
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 
@@ -17,7 +16,8 @@ class SonarScannerEndCmdTest {
         val cmdArguments = cmd.build()
 
         // Then
-        Assertions.assertThat(cmdArguments).containsExactly("mono", SONAR_SCANNER_PATH, "end")
+        Assertions.assertThat(cmdArguments).containsExactly("mono",
+            SONAR_SCANNER_PATH, "end")
     }
 
     @Test

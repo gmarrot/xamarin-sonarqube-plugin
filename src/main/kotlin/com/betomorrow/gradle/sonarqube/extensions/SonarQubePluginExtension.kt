@@ -1,6 +1,7 @@
 package com.betomorrow.gradle.sonarqube.extensions
 
 import org.gradle.api.Project
+import java.io.File
 
 const val SONARQUBE_EXTENSION_NAME = "sonarqube"
 
@@ -17,5 +18,12 @@ open class SonarQubePluginExtension(private val project: Project) {
 
     lateinit var projectKey: String
     var projectName: String? = null
+
+    var nunitReport: String? = null
+
+    val nunitReportFile: File?
+        get() {
+            return nunitReport?.let { path -> project.rootDir.resolve(path) }
+        }
 
 }

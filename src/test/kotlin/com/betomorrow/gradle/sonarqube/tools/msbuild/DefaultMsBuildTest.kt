@@ -1,12 +1,11 @@
-package com.betomorrow.sonarqube.tools.msbuild
+package com.betomorrow.gradle.sonarqube.tools.msbuild
 
-import com.betomorrow.gradle.sonarqube.tools.msbuild.MsBuild
 import com.betomorrow.xamarin.commands.CommandRunner
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
-class MsBuildTest {
+class DefaultMsBuildTest {
 
     private lateinit var msBuild: MsBuild
 
@@ -26,7 +25,7 @@ class MsBuildTest {
             }
         }
 
-        msBuild = MsBuild(commandRunner)
+        msBuild = DefaultMsBuild(commandRunner)
     }
 
     @Test
@@ -63,7 +62,7 @@ class MsBuildTest {
     @Test
     fun `test rebuildSolution should run solution rebuild with given MSBuild path`() {
         // Given
-        val msBuild = MsBuild(commandRunner, "/test/msbuild")
+        val msBuild = DefaultMsBuild(commandRunner, "/test/msbuild")
 
         // When
         msBuild.rebuildSolution("sample.sln", "Release")

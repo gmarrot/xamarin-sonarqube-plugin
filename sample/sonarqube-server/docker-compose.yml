@@ -2,7 +2,7 @@ version: '3'
 
 services:
   sonarqube:
-    image: sonarqube
+    image: sonarqube:lts
     restart: always
     links:
       - sonarqube-db
@@ -13,13 +13,14 @@ services:
     environment:
       - SONARQUBE_JDBC_URL=jdbc:postgresql://sonarqube-db:5432/sonar
     volumes:
+      - ./data/sonarqube/bundled-plugins:/opt/sonarqube/bundled-plugins
       - ./data/sonarqube/conf:/opt/sonarqube/conf
       - ./data/sonarqube/data:/opt/sonarqube/data
       - ./data/sonarqube/extensions:/opt/sonarqube/extensions
-      - ./data/sonarqube/bundled-plugins:/opt/sonarqube/bundled-plugins
+      - ./data/sonarqube/logs:/opt/sonarqube/logs
 
   sonarqube-db:
-    image: postgres
+    image: postgres:alpine
     restart: always
     networks:
       - sonarnet

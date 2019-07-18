@@ -49,6 +49,7 @@ class SonarQubePlugin : Plugin<Project> {
                     t.projectKey = sonarqubeExtension.projectKey
                     t.projectName = sonarqubeExtension.projectName
                     t.projectVersion = projectVersion
+                    t.nunitReport = sonarqubeExtension.nunitReportFile
 
                     t.dependsOn(nugetRestoreTask)
                 }
