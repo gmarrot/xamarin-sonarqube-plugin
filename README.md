@@ -10,31 +10,19 @@ As this plugin has been written in Kotlin, it requires Gradle 4.9+ to work.
 
 To execute the scan, you will also need to install msbuild on your computer.
 
-## Tasks
-
-This plugins creates several tasks to execute his scan :
-
-* __nugetRestore__ : Restore NuGet packages for the solution. If a task with the same name already exists, it will use it instead of register its own one.
-* __sonarScan__ : Execute the SonarQube scan building the solution with the defined configuration and platform.
-
 ## Quick Start
 
 First, you need to apply the plugin in your `build.gradle`.
 As it uses a jcenter library, you will also need to update your buildscript.
 
 ```groovy
-buildscript {
-    repositories {
-        jcenter()
-    }
-}
-
 plugins {
     id "com.betomorrow.xamarin.sonarqube" version "1.0.0"
 }
 ```
 
-Or with legacy plugin declaration :
+Or you can use the legacy plugin declaration.
+As it uses third-party libraries from jcenter, you will also need to update your buildscript.
 
 ```groovy
 buildscript {
@@ -59,6 +47,13 @@ sonarqube {
     projectKey = "my-project-jey"
 }
 ```
+
+## Tasks
+
+This plugins creates several tasks to execute his scan :
+
+* __nugetRestore__ : Restore NuGet packages for the solution. If a task with the same name already exists, it will use it instead of register its own one.
+* __sonarScan__ : Execute the SonarQube scan building the solution with the defined configuration and platform.
 
 ## Complete DSL
 
