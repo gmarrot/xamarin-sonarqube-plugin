@@ -17,7 +17,7 @@ As it uses a jcenter library, you will also need to update your buildscript.
 
 ```groovy
 plugins {
-    id "com.betomorrow.xamarin.sonarqube" version "1.0.0"
+    id "com.betomorrow.xamarin.sonarqube" version "1.1.0"
 }
 ```
 
@@ -33,7 +33,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath "com.betomorrow.gradle:xamarin-sonarqube-plugin:1.0.0"
+        classpath "com.betomorrow.gradle:xamarin-sonarqube-plugin:1.1.0"
     }
 }
 
