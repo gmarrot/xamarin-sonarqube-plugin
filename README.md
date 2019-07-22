@@ -61,15 +61,17 @@ This plugins creates several tasks to execute his scan :
 sonarqube {
     // Project configuration
     projectKey = ""                 // Required, key for project on SonarQube
-    projectName = ""                // Optional, default: null
+    projectName = ""                // Optional, project's name on SonarQube. Default: null
+
+    configuration = "Release"       // Optional, build configuration for scan. Default: Release
+
+    nunitReport = ""                // Optional, relative path to NUnit report. Default: null
 
     // Server configuration
-    url = "http://localhost:9000"   // Optional, default: use SonarScanner default server URL
-    login = ""                      // Optional, default: null
-    password = ""                   // Optional, default: null
-    authentificationToken = ""      // Optional, default: null
-
-    nunitReport = ""                // Optional, default: null
+    url = "http://localhost:9000"   // Optional, url for SonarQube server. Default: use SonarScanner default server URL
+    login = ""                      // Optional, login for SonarQube server. Default: null
+    password = ""                   // Optional, password for SonarQube server. Default: null
+    authentificationToken = ""      // Optional, authentication token for SonarQube server. Default: null
 }
 ```
 

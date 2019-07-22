@@ -19,6 +19,9 @@ open class SonarQubePluginExtension(private val project: Project) {
     lateinit var projectKey: String
     var projectName: String? = null
 
+    var configuration: String = "Release"
+    var platform: String? = null
+
     var nunitReport: String? = null
 
     val nunitReportFile: File?
