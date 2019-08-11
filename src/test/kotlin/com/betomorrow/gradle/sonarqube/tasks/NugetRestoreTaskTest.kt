@@ -1,39 +1,28 @@
 package com.betomorrow.gradle.sonarqube.tasks
 
 import com.betomorrow.gradle.sonarqube.context.PluginContext
-import com.betomorrow.gradle.sonarqube.tools.msbuild.MsBuild
-import com.betomorrow.gradle.sonarqube.tools.sonarscanner.SonarScannerBuilder
 import com.betomorrow.xamarin.tools.nuget.Nuget
+import com.nhaarman.mockitokotlin2.doReturn
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.verify
+import com.nhaarman.mockitokotlin2.whenever
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.catchThrowable
 import org.gradle.api.GradleException
 import org.gradle.testfixtures.ProjectBuilder
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.extension.ExtendWith
-import org.mockito.BDDMockito.given
-import org.mockito.BDDMockito.then
-import org.mockito.InjectMocks
-import org.mockito.Mock
 import org.mockito.Mockito.times
-import org.mockito.junit.jupiter.MockitoExtension
 
-@ExtendWith(MockitoExtension::class)
 class NugetRestoreTaskTest {
 
     private lateinit var nugetRestoreTask: NugetRestoreTask
 
-    @Mock
-    private lateinit var nuget: Nuget
+    private val nuget = mock<Nuget> { }
 
-    @Mock
-    private lateinit var sonarScannerBuilder: SonarScannerBuilder
-
-    @Mock
-    private lateinit var msBuild: MsBuild
-
-    @InjectMocks
-    private lateinit var fakePluginContext: PluginContext
+    private val fakePluginContext = mock<PluginContext> {
+        on { nuget } doReturn nuget
+    }
 
     @BeforeEach
     fun setUp() {
@@ -49,25 +38,25 @@ class NugetRestoreTaskTest {
     @Test
     fun `test restore should succeed when NuGet restore return 0`() {
         // Given
-        given(nuget.restore()).willReturn(0)
+        whenever(nuget.restore()).thenReturn(0)
 
         // When
         nugetRestoreTask.restore()
 
         // Then
-        then(nuget).should(times(1)).restore()
+        verify(nuget, times(1)).restore()
     }
 
     @Test
     fun `test restore should fail when NuGet restore return positive value`() {
         // Given
-        given(nuget.restore()).willReturn(1)
+        whenever(nuget.restore()).thenReturn(1)
 
         // When
         val thrown = catchThrowable(nugetRestoreTask::restore)
 
         // Then
-        then(nuget).should(times(1)).restore()
+        verify(nuget, times(1)).restore()
         assertThat(thrown).isInstanceOf(GradleException::class.java)
     }
 

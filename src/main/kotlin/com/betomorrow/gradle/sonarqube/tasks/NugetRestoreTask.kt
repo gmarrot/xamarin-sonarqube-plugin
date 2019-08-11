@@ -7,10 +7,10 @@ import org.gradle.api.tasks.TaskAction
 
 open class NugetRestoreTask : DefaultTask() {
 
-    private val nuget = PluginContext.current.nuget
-
     @TaskAction
     fun restore() {
+        val nuget = PluginContext.current.nuget
+
         val result = nuget.restore()
         if (result > 0) {
             throw GradleException("Can't restore packages")

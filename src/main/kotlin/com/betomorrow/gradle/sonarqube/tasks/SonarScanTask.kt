@@ -2,7 +2,6 @@ package com.betomorrow.gradle.sonarqube.tasks
 
 import com.betomorrow.gradle.sonarqube.context.PluginContext
 import com.betomorrow.gradle.sonarqube.tools.sonarscanner.SonarScanner
-import com.betomorrow.gradle.sonarqube.tools.sonarscanner.SonarScannerBuilder
 import org.gradle.api.DefaultTask
 import org.gradle.api.GradleException
 import org.gradle.api.tasks.Input
@@ -12,9 +11,6 @@ import org.gradle.api.tasks.TaskAction
 import java.io.File
 
 open class SonarScanTask : DefaultTask() {
-
-    private val sonarScannerBuilder = PluginContext.current.sonarScannerBuilder
-    private val msbuild = PluginContext.current.msBuild
 
     @Input
     @Optional
@@ -83,6 +79,7 @@ open class SonarScanTask : DefaultTask() {
             throw GradleException("Failed to initialize the scan")
         }
 
+        val msbuild = PluginContext.current.msBuild
         if (msbuild.rebuildSolution(solutionFile.absolutePath, configuration, platform) > 0) {
             throw GradleException("Failed to build solution")
         }
@@ -93,14 +90,15 @@ open class SonarScanTask : DefaultTask() {
     }
 
     private fun buildSonarScanner(): SonarScanner {
+        val builder = PluginContext.current.sonarScannerBuilder
         sonarScannerVersion?.let {
-            sonarScannerBuilder.withVersion(it)
+            builder.withVersion(it)
         }
         sonarScannerPath?.let {
-            sonarScannerBuilder.withSonarScannerPath(it)
+            builder.withSonarScannerPath(it)
         }
 
-        return sonarScannerBuilder.build()
+        return builder.build()
     }
 
 }

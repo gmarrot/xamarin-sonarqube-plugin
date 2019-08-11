@@ -14,7 +14,7 @@ class SonarQubePluginIntTest {
     @Rule
     val testProjectDir = TemporaryFolder()
 
-    lateinit var buildFile: File
+    private lateinit var buildFile: File
 
     @BeforeEach
     fun setUp() {
