@@ -7,7 +7,6 @@ class SonarScannerEndCmd(
     private val login: String? = null,
     private val password: String? = null
 ) : CommandRunner.Cmd {
-
     override fun build(): MutableList<String> {
         val cmd = mutableListOf("mono", sonarScannerPath, "end")
 
@@ -21,5 +20,4 @@ class SonarScannerEndCmd(
 
         return cmd
     }
-
 }

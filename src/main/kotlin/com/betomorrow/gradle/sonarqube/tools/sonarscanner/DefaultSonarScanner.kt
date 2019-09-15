@@ -3,9 +3,10 @@ package com.betomorrow.gradle.sonarqube.tools.sonarscanner
 import com.betomorrow.xamarin.commands.CommandRunner
 import java.io.File
 
-class DefaultSonarScanner(private val runner: CommandRunner, private val sonarScannerPath: String) :
-    SonarScanner {
-
+class DefaultSonarScanner(
+    private val runner: CommandRunner,
+    private val sonarScannerPath: String
+) : SonarScanner {
     private var login: String? = null
     private var password: String? = null
 
@@ -24,7 +25,13 @@ class DefaultSonarScanner(private val runner: CommandRunner, private val sonarSc
         password = null
     }
 
-    override fun begin(projectKey: String, projectName: String?, version: String?, url: String?, nunitReport: File?): Int {
+    override fun begin(
+        projectKey: String,
+        projectName: String?,
+        version: String?,
+        url: String?,
+        nunitReport: File?
+    ): Int {
         return execute(
             SonarScannerBeginCmd(
                 sonarScannerPath,
@@ -56,5 +63,4 @@ class DefaultSonarScanner(private val runner: CommandRunner, private val sonarSc
 
         return runner.run(cmd)
     }
-
 }

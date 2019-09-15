@@ -10,7 +10,6 @@ import com.betomorrow.xamarin.tools.nuget.NugetBuilder
 import org.gradle.api.Project
 
 class DefaultPluginContext(private val project: Project, private val commandRunner: CommandRunner) : PluginContext {
-
     override val nuget: Nuget by lazy {
         buildNuget(project, commandRunner)
     }
@@ -42,5 +41,4 @@ class DefaultPluginContext(private val project: Project, private val commandRunn
 
         return nugetBuilder.build()
     }
-
 }

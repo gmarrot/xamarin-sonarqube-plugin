@@ -5,7 +5,6 @@ import com.betomorrow.xamarin.commands.SystemCommandRunner
 import com.betomorrow.xamarin.tools.xbuild.XBuildCmd
 
 class DefaultMsBuild(private val commandRunner: CommandRunner, msBuildPath: String?) : MsBuild {
-
     private val msBuildPath: String
 
     constructor(commandRunner: CommandRunner) : this(commandRunner, DEFAULT_MSBUILD_PATH)
@@ -31,5 +30,4 @@ class DefaultMsBuild(private val commandRunner: CommandRunner, msBuildPath: Stri
     companion object {
         const val DEFAULT_MSBUILD_PATH = "/Library/Frameworks/Mono.framework/Commands/msbuild"
     }
-
 }

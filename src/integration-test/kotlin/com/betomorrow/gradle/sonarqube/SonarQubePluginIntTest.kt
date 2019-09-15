@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test
 import java.io.File
 
 class SonarQubePluginIntTest {
-
     @Rule
     val testProjectDir = TemporaryFolder()
 
@@ -84,5 +83,4 @@ class SonarQubePluginIntTest {
         println(result.tasks)
         assertThat(result.tasks.map { it.path }).containsExactly(":nugetRestore", ":sonarScan")
     }
-
 }

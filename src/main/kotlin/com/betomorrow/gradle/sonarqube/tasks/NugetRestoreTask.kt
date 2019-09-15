@@ -6,7 +6,6 @@ import org.gradle.api.GradleException
 import org.gradle.api.tasks.TaskAction
 
 open class NugetRestoreTask : DefaultTask() {
-
     @TaskAction
     fun restore() {
         val nuget = PluginContext.current.nuget
@@ -16,5 +15,4 @@ open class NugetRestoreTask : DefaultTask() {
             throw GradleException("Can't restore packages")
         }
     }
-
 }

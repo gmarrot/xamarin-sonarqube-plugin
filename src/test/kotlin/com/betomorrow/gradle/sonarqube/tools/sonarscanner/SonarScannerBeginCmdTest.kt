@@ -6,7 +6,6 @@ import org.gradle.internal.impldep.org.junit.rules.TemporaryFolder
 import org.junit.jupiter.api.Test
 
 class SonarScannerBeginCmdTest {
-
     private lateinit var cmd: SonarScannerBeginCmd
 
     @Rule
@@ -202,5 +201,4 @@ class SonarScannerBeginCmdTest {
         const val SONAR_SCANNER_PATH = "/test/SonarScanner.MsBuild.exe"
         const val PROJECT_KEY = "my-project-key"
     }
-
 }

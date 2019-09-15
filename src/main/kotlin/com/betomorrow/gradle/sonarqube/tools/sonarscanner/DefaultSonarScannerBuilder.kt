@@ -10,7 +10,6 @@ import java.net.URL
 import java.nio.file.Paths
 
 class DefaultSonarScannerBuilder : SonarScannerBuilder {
-
     private lateinit var runner: CommandRunner
 
     private var scannerVersion: String? = null
@@ -93,5 +92,4 @@ class DefaultSonarScannerBuilder : SonarScannerBuilder {
         const val DEFAULT_SONAR_SCANNER_VERSION = "4.6.2.2108"
         const val SONAR_SCANNER_EXECUTABLE_NAME = "SonarScanner.MsBuild.exe"
     }
-
 }

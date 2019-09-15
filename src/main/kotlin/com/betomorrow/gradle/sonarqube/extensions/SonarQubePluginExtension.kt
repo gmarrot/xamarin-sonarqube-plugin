@@ -6,7 +6,6 @@ import java.io.File
 const val SONARQUBE_EXTENSION_NAME = "sonarqube"
 
 open class SonarQubePluginExtension(private val project: Project) {
-
     // Server configuration
 
     var url: String? = null
@@ -28,5 +27,4 @@ open class SonarQubePluginExtension(private val project: Project) {
         get() {
             return nunitReport?.let { path -> project.rootDir.resolve(path) }
         }
-
 }

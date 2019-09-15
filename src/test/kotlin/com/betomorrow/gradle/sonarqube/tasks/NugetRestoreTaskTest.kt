@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test
 import org.mockito.Mockito.times
 
 class NugetRestoreTaskTest {
-
     private lateinit var nugetRestoreTask: NugetRestoreTask
 
     private val nuget = mock<Nuget> { }
@@ -59,5 +58,4 @@ class NugetRestoreTaskTest {
         verify(nuget, times(1)).restore()
         assertThat(thrown).isInstanceOf(GradleException::class.java)
     }
-
 }

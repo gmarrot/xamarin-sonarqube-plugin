@@ -8,13 +8,11 @@ import com.betomorrow.xamarin.tools.nuget.Nuget
 import org.gradle.api.Project
 
 interface PluginContext {
-
     val nuget: Nuget
     val sonarScannerBuilder: SonarScannerBuilder
     val msBuild: MsBuild
 
     companion object {
-
         lateinit var current: PluginContext
             internal set
 
@@ -38,7 +36,5 @@ interface PluginContext {
 
             return DefaultPluginContext(project, commandRunnerInstance)
         }
-
     }
-
 }

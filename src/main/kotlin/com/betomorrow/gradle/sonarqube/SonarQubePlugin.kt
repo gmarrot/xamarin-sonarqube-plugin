@@ -10,7 +10,6 @@ import org.gradle.api.Project
 import java.io.File
 
 class SonarQubePlugin : Plugin<Project> {
-
     override fun apply(target: Project) {
         with(target) {
             extensions.create(SONARQUBE_EXTENSION_NAME, SonarQubePluginExtension::class.java, target)
@@ -79,5 +78,4 @@ class SonarQubePlugin : Plugin<Project> {
 
         private const val NUGET_RESTORE_TASK_NAME = "nugetRestore"
     }
-
 }

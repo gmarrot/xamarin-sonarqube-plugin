@@ -11,7 +11,6 @@ import org.gradle.api.tasks.TaskAction
 import java.io.File
 
 open class SonarScanTask : DefaultTask() {
-
     @Input
     @Optional
     var sonarScannerVersion: String? = null
@@ -100,5 +99,4 @@ open class SonarScanTask : DefaultTask() {
 
         return builder.build()
     }
-
 }

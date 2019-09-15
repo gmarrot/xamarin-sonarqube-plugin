@@ -3,7 +3,6 @@ package com.betomorrow.gradle.sonarqube.tools.sonarscanner
 import java.io.File
 
 interface SonarScanner {
-
     fun setCredentials(login: String, password: String)
     fun setCredentials(authenticationToken: String)
     fun clearCredentials()
@@ -17,5 +16,4 @@ interface SonarScanner {
     ): Int
 
     fun end(): Int
-
 }

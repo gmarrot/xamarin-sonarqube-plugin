@@ -3,7 +3,6 @@ package com.betomorrow.gradle.sonarqube.commands
 import com.betomorrow.xamarin.commands.CommandRunner
 
 class DryRunCommandRunner : CommandRunner {
-
     private val mutableExecutedCommands = mutableListOf<CommandRunner.Cmd>()
     private var verbose = false
 
@@ -26,5 +25,4 @@ class DryRunCommandRunner : CommandRunner {
         mutableExecutedCommands.add(cmd)
         return 0
     }
-
 }

@@ -4,7 +4,14 @@ import com.betomorrow.gradle.sonarqube.context.PluginContext
 import com.betomorrow.gradle.sonarqube.tools.msbuild.MsBuild
 import com.betomorrow.gradle.sonarqube.tools.sonarscanner.SonarScanner
 import com.betomorrow.gradle.sonarqube.tools.sonarscanner.SonarScannerBuilder
-import com.nhaarman.mockitokotlin2.*
+import com.nhaarman.mockitokotlin2.anyOrNull
+import com.nhaarman.mockitokotlin2.doReturn
+import com.nhaarman.mockitokotlin2.inOrder
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.never
+import com.nhaarman.mockitokotlin2.times
+import com.nhaarman.mockitokotlin2.verify
+import com.nhaarman.mockitokotlin2.whenever
 import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.gradle.api.GradleException
@@ -16,7 +23,6 @@ import org.junit.jupiter.api.Test
 import org.mockito.ArgumentMatchers.anyString
 
 class SonarScanTaskTest {
-
     @Rule
     val tempProjectDir = TemporaryFolder()
 
@@ -209,5 +215,4 @@ class SonarScanTaskTest {
     companion object {
         const val PROJECT_KEY = "project-key"
     }
-
 }

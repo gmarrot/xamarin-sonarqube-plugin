@@ -6,7 +6,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class DefaultMsBuildTest {
-
     private lateinit var msBuild: MsBuild
 
     private lateinit var commandRunner: CommandRunner
@@ -76,5 +75,4 @@ class DefaultMsBuildTest {
             "sample.sln"
         )
     }
-
 }

@@ -4,7 +4,6 @@ import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 
 class SonarScannerEndCmdTest {
-
     private lateinit var cmd: SonarScannerEndCmd
 
     @Test
@@ -82,5 +81,4 @@ class SonarScannerEndCmdTest {
     companion object {
         const val SONAR_SCANNER_PATH = "/test/SonarScanner.MsBuild.exe"
     }
-
 }
