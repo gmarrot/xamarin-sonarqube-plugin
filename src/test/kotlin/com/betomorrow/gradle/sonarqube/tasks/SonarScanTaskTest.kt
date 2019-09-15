@@ -88,7 +88,8 @@ class SonarScanTaskTest {
         // Then
         val inOrder = inOrder(sonarScanner)
         inOrder.verify(sonarScanner, times(1)).setCredentials("Username", "Secr3tPassword")
-        inOrder.verify(sonarScanner, times(1)).begin(anyString(), anyOrNull(), anyOrNull(), anyOrNull(), anyOrNull())
+        inOrder.verify(sonarScanner, times(1))
+            .begin(anyString(), anyOrNull(), anyOrNull(), anyOrNull(), anyOrNull(), anyOrNull())
     }
 
     @Test
@@ -102,7 +103,8 @@ class SonarScanTaskTest {
         // Then
         val inOrder = inOrder(sonarScanner)
         inOrder.verify(sonarScanner, times(1)).setCredentials("AuthenticationTok3n")
-        inOrder.verify(sonarScanner, times(1)).begin(anyString(), anyOrNull(), anyOrNull(), anyOrNull(), anyOrNull())
+        inOrder.verify(sonarScanner, times(1))
+            .begin(anyString(), anyOrNull(), anyOrNull(), anyOrNull(), anyOrNull(), anyOrNull())
     }
 
     @Test
@@ -127,7 +129,8 @@ class SonarScanTaskTest {
 
         // Then
         val inOrder = inOrder(sonarScanner, msBuild)
-        inOrder.verify(sonarScanner, times(1)).begin(anyString(), anyOrNull(), anyOrNull(), anyOrNull(), anyOrNull())
+        inOrder.verify(sonarScanner, times(1))
+            .begin(anyString(), anyOrNull(), anyOrNull(), anyOrNull(), anyOrNull(), anyOrNull())
         inOrder.verify(msBuild, times(1)).rebuildSolution(anyString(), anyString(), anyOrNull())
         inOrder.verify(sonarScanner, times(1)).end()
     }
@@ -135,7 +138,16 @@ class SonarScanTaskTest {
     @Test
     fun `test scan should call exit with exception when scanner begin failed`() {
         // Given
-        whenever(sonarScanner.begin(anyString(), anyOrNull(), anyOrNull(), anyOrNull(), anyOrNull())).thenReturn(1)
+        whenever(
+            sonarScanner.begin(
+                anyString(),
+                anyOrNull(),
+                anyOrNull(),
+                anyOrNull(),
+                anyOrNull(),
+                anyOrNull()
+            )
+        ).thenReturn(1)
 
         // When
         val thrown = Assertions.catchThrowable(sonarScanTask::scan)
@@ -143,7 +155,14 @@ class SonarScanTaskTest {
         // Then
         assertThat(thrown).isInstanceOf(GradleException::class.java)
 
-        verify(sonarScanner, times(1)).begin(anyString(), anyOrNull(), anyOrNull(), anyOrNull(), anyOrNull())
+        verify(sonarScanner, times(1)).begin(
+            anyString(),
+            anyOrNull(),
+            anyOrNull(),
+            anyOrNull(),
+            anyOrNull(),
+            anyOrNull()
+        )
         verify(msBuild, never()).rebuildSolution(anyString(), anyString(), anyOrNull())
         verify(sonarScanner, never()).end()
     }
@@ -159,7 +178,14 @@ class SonarScanTaskTest {
         // Then
         assertThat(thrown).isInstanceOf(GradleException::class.java)
 
-        verify(sonarScanner, times(1)).begin(anyString(), anyOrNull(), anyOrNull(), anyOrNull(), anyOrNull())
+        verify(sonarScanner, times(1)).begin(
+            anyString(),
+            anyOrNull(),
+            anyOrNull(),
+            anyOrNull(),
+            anyOrNull(),
+            anyOrNull()
+        )
         verify(msBuild, times(1)).rebuildSolution(anyString(), anyString(), anyOrNull())
         verify(sonarScanner, never()).end()
     }
@@ -175,7 +201,14 @@ class SonarScanTaskTest {
         // Then
         assertThat(thrown).isInstanceOf(GradleException::class.java)
 
-        verify(sonarScanner, times(1)).begin(anyString(), anyOrNull(), anyOrNull(), anyOrNull(), anyOrNull())
+        verify(sonarScanner, times(1)).begin(
+            anyString(),
+            anyOrNull(),
+            anyOrNull(),
+            anyOrNull(),
+            anyOrNull(),
+            anyOrNull()
+        )
         verify(msBuild, times(1)).rebuildSolution(anyString(), anyString(), anyOrNull())
         verify(sonarScanner, times(1)).end()
     }

@@ -12,7 +12,8 @@ interface SonarScanner {
         projectName: String? = null,
         version: String? = null,
         url: String? = null,
-        nunitReport: File? = null
+        nunitReport: File? = null,
+        vstestReport: File? = null
     ): Int
 
     fun end(): Int

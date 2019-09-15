@@ -60,6 +60,10 @@ open class SonarScanTask : DefaultTask() {
     @Optional
     var nunitReport: File? = null
 
+    @InputFile
+    @Optional
+    var vstestReport: File? = null
+
     @TaskAction
     fun scan() {
         val sonarScanner = buildSonarScanner()
@@ -74,7 +78,7 @@ open class SonarScanTask : DefaultTask() {
             }
         }
 
-        if (sonarScanner.begin(projectKey, projectName, projectVersion, serverUrl, nunitReport) > 0) {
+        if (sonarScanner.begin(projectKey, projectName, projectVersion, serverUrl, nunitReport, vstestReport) > 0) {
             throw GradleException("Failed to initialize the scan")
         }
 

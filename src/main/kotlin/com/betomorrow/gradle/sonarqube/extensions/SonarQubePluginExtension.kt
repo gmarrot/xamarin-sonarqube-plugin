@@ -22,9 +22,15 @@ open class SonarQubePluginExtension(private val project: Project) {
     var platform: String? = null
 
     var nunitReport: String? = null
+    var vstestReport: String? = null
 
     val nunitReportFile: File?
         get() {
             return nunitReport?.let { path -> project.rootDir.resolve(path) }
+        }
+
+    val vstestReportFile: File?
+        get() {
+            return vstestReport?.let { path -> project.rootDir.resolve(path) }
         }
 }

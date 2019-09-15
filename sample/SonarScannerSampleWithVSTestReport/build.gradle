@@ -1,0 +1,53 @@
+buildscript {
+    repositories {
+        jcenter()
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.betomorrow.gradle:xamarin-sonarqube-plugin:1.2.0'
+    }
+}
+
+plugins {
+    id 'com.betomorrow.xamarin.nunit' version '1.9.0'
+}
+
+apply plugin: 'com.betomorrow.xamarin.sonarqube'
+
+version=1.0
+
+project.ext {
+    nugetVersion = '4.8.2'
+}
+
+nunit {
+    format = "nunit2"
+}
+
+sonarqube {
+    projectKey = "SonarScannerSampleWithVSTestReport-master"
+
+    url = "http://localhost:9000"
+    login = 'admin'
+    password = 'admin'
+
+    vstestReport = "TestResult.trx"
+}
+
+/**
+ * Tests
+ */
+
+task vsTest(type: Exec, group: "verification", description: "Run NUnit tests with VSTest.", dependsOn: ["compileTest"]) {
+    executable "/usr/local/share/dotnet/dotnet"
+    args "vstest", "SonarScannerSample.Test/bin/Release/netcoreapp2.1/SonarScannerSample.Test.dll", "--logger:trx;LogFileName=TestResult.trx", "--ResultsDirectory:."
+}
+
+/**
+ * Gradle Wrapper
+ */
+
+wrapper {
+    gradleVersion = '4.9'
+}

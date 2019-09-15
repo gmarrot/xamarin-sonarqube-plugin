@@ -11,7 +11,8 @@ class SonarScannerBeginCmd(
     private val url: String? = null,
     private val login: String? = null,
     private val password: String? = null,
-    private val nunitReport: File? = null
+    private val nunitReport: File? = null,
+    private val vstestReport: File? = null
 ) : CommandRunner.Cmd {
     override fun build(): MutableList<String> {
         val cmd = mutableListOf("mono", sonarScannerPath, "begin", "/k:$projectKey")
@@ -38,6 +39,10 @@ class SonarScannerBeginCmd(
 
         if (nunitReport != null) {
             cmd.add("/d:sonar.cs.nunit.reportsPaths=${nunitReport.absolutePath}")
+        }
+
+        if (vstestReport != null) {
+            cmd.add("/d:sonar.cs.vstest.reportsPaths=${vstestReport.absolutePath}")
         }
 
         return cmd

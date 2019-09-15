@@ -163,10 +163,36 @@ class SonarScannerBeginCmdTest {
     }
 
     @Test
+    fun `test build should return correct command arguments when VSTest report has been specified`() {
+        // Given
+        testProjectDir.create()
+        val vstestReport = testProjectDir.newFile("vstest-report.xml")
+
+        cmd = SonarScannerBeginCmd(
+            SONAR_SCANNER_PATH,
+            PROJECT_KEY,
+            vstestReport = vstestReport
+        )
+
+        // When
+        val cmdArguments = cmd.build()
+
+        // Then
+        Assertions.assertThat(cmdArguments).containsExactly(
+            "mono",
+            SONAR_SCANNER_PATH,
+            "begin",
+            "/k:$PROJECT_KEY",
+            "/d:sonar.cs.vstest.reportsPaths=${vstestReport.absolutePath}"
+        )
+    }
+
+    @Test
     fun `test build should return correct command arguments when all parameters have been specified`() {
         // Given
         testProjectDir.create()
         val nunitReport = testProjectDir.newFile("nunit-report.xml")
+        val vstestReport = testProjectDir.newFile("vstest-report.xml")
 
         cmd = SonarScannerBeginCmd(
             SONAR_SCANNER_PATH,
@@ -176,7 +202,8 @@ class SonarScannerBeginCmdTest {
             "https://sonarqube.example.com",
             "sonarUser",
             "sonarPassword",
-            nunitReport
+            nunitReport,
+            vstestReport
         )
 
         // When
@@ -193,7 +220,8 @@ class SonarScannerBeginCmdTest {
             "/d:sonar.host.url=https://sonarqube.example.com",
             "/d:sonar.login=sonarUser",
             "/d:sonar.password=sonarPassword",
-            "/d:sonar.cs.nunit.reportsPaths=${nunitReport.absolutePath}"
+            "/d:sonar.cs.nunit.reportsPaths=${nunitReport.absolutePath}",
+            "/d:sonar.cs.vstest.reportsPaths=${vstestReport.absolutePath}"
         )
     }
 

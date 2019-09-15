@@ -30,7 +30,8 @@ class DefaultSonarScanner(
         projectName: String?,
         version: String?,
         url: String?,
-        nunitReport: File?
+        nunitReport: File?,
+        vstestReport: File?
     ): Int {
         return execute(
             SonarScannerBeginCmd(
@@ -41,7 +42,8 @@ class DefaultSonarScanner(
                 url,
                 login,
                 password,
-                nunitReport
+                nunitReport,
+                vstestReport
             )
         )
     }

@@ -51,6 +51,7 @@ class SonarQubePlugin : Plugin<Project> {
                     t.configuration = sonarqubeExtension.configuration
                     t.platform = sonarqubeExtension.platform
                     t.nunitReport = sonarqubeExtension.nunitReportFile
+                    t.vstestReport = sonarqubeExtension.vstestReportFile
 
                     t.dependsOn(nugetRestoreTask)
                 }

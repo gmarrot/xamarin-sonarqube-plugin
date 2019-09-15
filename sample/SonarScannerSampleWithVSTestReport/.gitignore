@@ -1,0 +1,15 @@
+# Gradle
+.gradle/
+
+# Build
+[Bb]in/
+[Oo]bj/
+packages/
+[Rr]esource.[Dd]esigner.cs
+TestResult.trx
+
+# Visual Studio
+.vs/
+
+# SonarQube
+.sonarqube/
