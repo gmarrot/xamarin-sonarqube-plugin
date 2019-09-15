@@ -12,6 +12,8 @@ cache:
     - '$HOME/.m2/repository'
     - '$HOME/.gradle/caches/'
     - '$HOME/.gradle/wrapper/'
+    - '$HOME/.nuget/caches/'
+    - '$HOME/.sonarqube/caches/'
 
 jobs:
   include:
