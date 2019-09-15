@@ -1,5 +1,7 @@
 # SonarQube Scanner for MSBuild Gradle Plugin
 
+[![Build Status](https://travis-ci.org/gmarrot/xamarin-sonarqube-plugin.svg?branch=master)](https://travis-ci.org/gmarrot/xamarin-sonarqube-plugin)
+
 ## Summary
 
 This plugin allows you to launch a SonarQube scan on a .Net solution. It will download the scanner release in a cache folder, restore the solution packages, launch the scan building the solution with msbuild command line and upload the report to the wanted server.
