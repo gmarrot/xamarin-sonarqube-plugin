@@ -80,7 +80,6 @@ class SonarQubePluginIntTest {
             .build()
 
         // Then
-        println(result.tasks)
         assertThat(result.tasks.map { it.path }).containsExactly(":nugetRestore", ":sonarScan")
     }
 }

@@ -90,6 +90,6 @@ class DefaultSonarScannerBuilder : SonarScannerBuilder {
 
     companion object {
         const val DEFAULT_SONAR_SCANNER_VERSION = "4.6.2.2108"
-        const val SONAR_SCANNER_EXECUTABLE_NAME = "SonarScanner.MsBuild.exe"
+        const val SONAR_SCANNER_EXECUTABLE_NAME = "SonarScanner.MSBuild.exe"
     }
 }
