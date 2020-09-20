@@ -15,8 +15,11 @@ class SonarScannerEndCmdTest {
         val cmdArguments = cmd.build()
 
         // Then
-        Assertions.assertThat(cmdArguments).containsExactly("mono",
-            SONAR_SCANNER_PATH, "end")
+        Assertions.assertThat(cmdArguments).containsExactly(
+            "mono",
+            SONAR_SCANNER_PATH,
+            "end"
+        )
     }
 
     @Test

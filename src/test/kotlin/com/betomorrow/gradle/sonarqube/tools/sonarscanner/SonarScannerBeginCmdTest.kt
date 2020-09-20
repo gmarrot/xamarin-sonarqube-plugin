@@ -23,8 +23,12 @@ class SonarScannerBeginCmdTest {
         val cmdArguments = cmd.build()
 
         // Then
-        Assertions.assertThat(cmdArguments).containsExactly("mono",
-            SONAR_SCANNER_PATH, "begin", "/k:$PROJECT_KEY")
+        Assertions.assertThat(cmdArguments).containsExactly(
+            "mono",
+            SONAR_SCANNER_PATH,
+            "begin",
+            "/k:$PROJECT_KEY"
+        )
     }
 
     @Test
