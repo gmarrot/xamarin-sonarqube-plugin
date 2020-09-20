@@ -1,6 +1,6 @@
 # SonarQube Scanner for MSBuild Gradle Plugin
 
-[![Build Status](https://travis-ci.org/gmarrot/xamarin-sonarqube-plugin.svg?branch=master)](https://travis-ci.org/gmarrot/xamarin-sonarqube-plugin)
+[![Build Status](https://travis-ci.com/gmarrot/xamarin-sonarqube-plugin.svg?branch=master)](https://travis-ci.com/gmarrot/xamarin-sonarqube-plugin)
 
 ## Summary
 
